@@ -1,0 +1,60 @@
+import java.io.File;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.remote.RemoteWebDriver;
+import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+
+
+public class Skype {
+public WebDriver dr;
+public static void main(String[] args) throws Exception {
+	   WhatsApp testcases = new WhatsApp();
+	    testcases.launchApp();
+	   
+	    testcases.addName();
+	    testcases.exit();
+	}
+	  
+public void launchApp() throws Exception {
+	    System.out.println("Launching App");
+  File app=new File("d:\skype.apk");                //Path to the apk file
+	     DesiredCapabilities capabilities=new DesiredCapabilities();
+		capabilities.setCapability("deviceName","Galaxy S4");
+    capabilities.setCapability("app","");
+		capabilities.setCapability("platformVersion","4.4");
+		capabilities.setCapability(CapabilityType.BROWSER_NAME,"");
+		capabilities.setCapability("platformName","Android");
+	   capabilities.setCapability("app", app.getAbsolutePath());
+		capabilities.setCapability("appPackage","com.skype.raider");
+		capabilities.setCapability("appActivity","com.skype.raider.Main");
+    dr = new RemoteWebDriver(new URL("http://127.0.0.1:4723/wd/hub"),capabilities);
+	  dr.manage().timeouts().implicitlyWait(80, TimeUnit.SECONDS);
+	   
+	   
+	  }
+	  public void addName() throws InterruptedException {
+	
+		  dr.findElement(By.xpath("//android.widget.Button[@text='Skype Name']")).click();
+		  dr.findElement(By.xpath("//android.widget.EditText[@index=0]")).sendKeys("prabhatac");
+		  dr.findElement(By.id("com.skype.raider:id/signin_password")).sendKeys("prabhatac");
+		  dr.findElement(By.xpath("//android.widget.Button[@text='Sign in']")).click();
+		  
+		// Add your own actions that you want to perform  
+		}
+
+	  public void exit()
+	  {
+		  dr.quit();
+	  }
+
+}
+
+
