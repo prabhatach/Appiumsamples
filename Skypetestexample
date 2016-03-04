@@ -16,7 +16,7 @@ import org.testng.annotations.BeforeTest;
 public class Skype {
 public WebDriver dr;
 public static void main(String[] args) throws Exception {
-	   WhatsApp testcases = new WhatsApp();
+	   Skype testcases = new Skype();
 	    testcases.launchApp();
 	   
 	    testcases.addName();
@@ -43,8 +43,8 @@ public void launchApp() throws Exception {
 	  public void addName() throws InterruptedException {
 	
 		  dr.findElement(By.xpath("//android.widget.Button[@text='Skype Name']")).click();
-		  dr.findElement(By.xpath("//android.widget.EditText[@index=0]")).sendKeys("prabhatac");
-		  dr.findElement(By.id("com.skype.raider:id/signin_password")).sendKeys("prabhatac");
+		  dr.findElement(By.xpath("//android.widget.EditText[@index=0]")).sendKeys("username");
+		  dr.findElement(By.id("com.skype.raider:id/signin_password")).sendKeys("password");
 		  dr.findElement(By.xpath("//android.widget.Button[@text='Sign in']")).click();
 		  
 		// Add your own actions that you want to perform  
